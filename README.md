@@ -1,56 +1,45 @@
-# stock : TD Spring Boot / JPA
+# stock
 
-Petite API REST de gestion de stock d'articles, faite dans le cadre du TD d'application Spring Boot / JPA.
+tp spring boot jpa, une api pour gerer un stock d'articles (ajouter, lister, voir, supprimer)
 
-## Technologies
+techno utilisees : java 17, spring boot 4.1.2, spring data jpa, spring web, mysql, devtools
 
-- Java 17
-- Spring Boot 4.1.2 (généré sur start.spring.io)
-- Spring Data JPA (Hibernate)
-- Spring Web (MVC)
-- MySQL
-- Spring Boot DevTools
+## base de donnees
 
-## Base de données
-
-Créer la base dans MySQL :
+il faut creer la base stock dans mysql :
 
 ```sql
 CREATE DATABASE stock;
 ```
 
-La configuration se trouve dans `src/main/resources/application.properties` : `localhost:3306`, utilisateur `root`, mot de passe vide. Les tables sont créées automatiquement au démarrage (`spring.jpa.hibernate.ddl-auto=update`).
+la config est dans src/main/resources/application.properties (localhost:3306, user root, mdp vide). les tables se creent toutes seules au lancement.
 
-## Lancer l'application
+## lancer
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-L'API écoute sur `http://localhost:8080`.
+l'api ecoute sur localhost:8080
 
-## Routes de l'API
+## routes
 
-| Méthode | URL | Action |
-|---|---|---|
-| POST | `/api/articles` | Ajouter un article |
-| GET | `/api/articles` | Lister tous les articles |
-| GET | `/api/articles/{id}` | Afficher un article |
-| DELETE | `/api/articles/{id}` | Supprimer un article |
+- POST /api/articles : ajoute un article
+- GET /api/articles : liste les articles
+- GET /api/articles/{id} : affiche un article
+- DELETE /api/articles/{id} : supprime un article
 
-Exemple d'ajout :
+exemple pour ajouter un article :
 
 ```bash
 curl -X POST http://localhost:8080/api/articles -H "Content-Type: application/json" -d '{"nom":"Microphone Pro","categorie":"Dispositif interactif - DI","prixUni":75.00,"qte":15}'
 ```
 
-## Structure
+## fichiers
 
-- `model/Article.java` : l'entité JPA (table `article`)
-- `repository/ArticleRepository.java` : interface qui étend `CrudRepository<Article, Long>`
-- `service/ArticleService.java` : logique métier
-- `controller/ArticleController.java` : routes REST sur `/api/articles`
+- model/Article.java : l'entite
+- repository/ArticleRepository.java
+- service/ArticleService.java
+- controller/ArticleController.java
 
-## Diagramme de classes
-
-Voir [diagramme-classes.md](diagramme-classes.md).
+diagramme : diagramme-classes.md

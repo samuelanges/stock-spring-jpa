@@ -1,11 +1,7 @@
 # Diagramme de classes
 
-Le diagramme se lit du haut vers le bas : le Controller appelle le Service, le Service appelle le Repository, et le Repository gère l'entité `Article`.
-
 ```mermaid
 classDiagram
-    direction TB
-
     class StockApplication {
         +main(args) void
     }
@@ -57,17 +53,9 @@ classDiagram
         +setQte(qte) void
     }
 
-    ArticleController --> ArticleService : utilise
-    ArticleService --> ArticleRepository : utilise
-    ArticleRepository --|> CrudRepository : étend
-    CrudRepository ..> Article : T = Article, ID = Long
-    ArticleController ..> Article : reçoit et renvoie
+    ArticleController --> ArticleService
+    ArticleService --> ArticleRepository
+    ArticleRepository --|> CrudRepository
+    CrudRepository ..> Article
+    ArticleController ..> Article
 ```
-
-## Légende
-
-- `-` : attribut privé
-- `+` : méthode publique
-- `-->` : une classe utilise l'autre
-- `--|>` : une interface en étend une autre
-- `..>` : dépendance (une classe manipule l'autre sans la stocker)
